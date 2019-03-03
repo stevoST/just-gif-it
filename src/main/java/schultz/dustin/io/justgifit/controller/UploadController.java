@@ -23,7 +23,7 @@ public class UploadController {
     public String upload(@RequestPart("file") MultipartFile file,
                          @RequestParam("start") int start,
                          @RequestParam("end") int end,
-                         @RequestParam("spped") int spped,
+                         @RequestParam("speed") int spped,
                          @RequestParam("repeat") boolean repeat) throws IOException {
         File videoFile = new File(location + "/" + System
                 .currentTimeMillis() + ".mp4");
