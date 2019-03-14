@@ -7,8 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JustGifItApplication {
 
 
-	//curl -F file=test.mp4 -F start=0 -F end=0 -F speed=1 -F repeat=0 localhost:8080/upload
+	//curl -F file=@test.mp4 -F start=0 -F end=0 -F speed=1 -F repeat=0 localhost:8080/upload
 	public static void main(String[] args) {
+
+		System.out.println("test");
 		SpringApplication.run(JustGifItApplication.class, args);
 	}
 
