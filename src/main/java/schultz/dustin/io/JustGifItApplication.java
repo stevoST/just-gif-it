@@ -22,51 +22,8 @@ import java.io.File;
         WebSocketAutoConfiguration.class})
 public class JustGifItApplication {
 
-    @Value("${multipart.location}/gif/")
-    private String gifLocation;
-
     public static void main(String[] args) {
         SpringApplication.run(JustGifItApplication.class, args);
     }
 
-    @PostConstruct
-    private void init() {
-        File gifFolder = new File(gifLocation);
-        if (!gifFolder.exists()) {
-            gifFolder.mkdir();
-        }
-    }
-
-    @Bean
-    public FilterRegistrationBean deRegisterHiddenHttpMethodFilter(HiddenHttpMethodFilter filter) {
-        FilterRegistrationBean bean = new FilterRegistrationBean(filter);
-        bean.setEnabled(false);
-        return bean;
-    }
-
-    @Bean
-    public FilterRegistrationBean deRegisterHttpPutFormContentFilter(HttpPutFormContentFilter filter) {
-        FilterRegistrationBean bean = new FilterRegistrationBean(filter);
-        bean.setEnabled(false);
-        return bean;
-    }
-
-    @Bean
-    public FilterRegistrationBean deRegisterRequestContextFilter(RequestContextFilter filter) {
-        FilterRegistrationBean bean = new FilterRegistrationBean(filter);
-        bean.setEnabled(false);
-        return bean;
-    }
-
-    @Bean
-    public WebMvcConfigurer webMvcConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                registry.addResourceHandler("/gif/**")
-                        .addResourceLocations("file:" + gifLocation);
-                super.addResourceHandlers(registry);
-            }
-        };
-    }
 }
